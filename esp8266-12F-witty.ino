@@ -75,7 +75,8 @@ int pwm = 0;
 //int rgbLED[3] = {HIGH, LOW, HIGH};
 int rgbLED[3] = {HIGH, HIGH, LOW};
 
-int pwmLED[8][3] = {
+int pwmIdx = 0;
+int pwmLED[11][3] = {
     {255,  0,  0},  // red 
     {  0,255,  0},  // green 
     {  0,  0,255},  // blue 
@@ -83,6 +84,9 @@ int pwmLED[8][3] = {
     {237,109,  0},  // orange
     {  0, 46, 90},  // indigo
     {255,  0,255},  // magenta
+    {153, 50,204},
+    {255,  0,255},  // yellow
+    {  0,255,255},  // cyan
     {  0,  0,  0}   // off
 };
 // set time for the next LDR reading
