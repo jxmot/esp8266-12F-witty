@@ -183,51 +183,75 @@ int buttnow;
 */
 void runLED(bool pwmORdig)
 {
-int temp;
-
     // is it time to change the LED?
     if(nextLED < millis())
     {
-        if(pwmORdig == USE_PWM)
-        {
-////
-            if(DBGOUT) Serial.println("LEDS: "+String(pwm));
+        if(pwmORdig == USE_PWM) 
+            if(PWM_TABLE) colorsPWM();
+            else sweepPWM();
+        else cycleDIG();
 
-            // yep, adjust the PWM of each of the colors
-            analogWrite(RED_LED, pwm);
-            analogWrite(GRN_LED, pwm);
-            analogWrite(BLU_LED, pwm);
-            // when the PWM is OFF wait for a while
-            if(pwm == 0) delay(PWM_ZERO_DELAY);
-            // increment the PWM value
-            pwm = pwm + PWMSTEP;
-            // did we reach the end of the PWM range?
-            if(pwm > PWMRANGE) 
-            {
-                // yep, set the PWM value to OFF(0) and 
-                // leave the LED turned ON for a while
-                pwm = 0;
-                delay(PWM_MAX_DELAY);
-            }
-////
-        } else {
-////
-            // write the pattern of ON/OFF to the LEDs
-            digitalWrite(RED_LED, rgbLED[0]);
-            digitalWrite(GRN_LED, rgbLED[1]);
-            digitalWrite(BLU_LED, rgbLED[2]);
-            // rotate the pattern through the 3 LEDs
-            temp = rgbLED[2];
-            rgbLED[2] = rgbLED[1];
-            rgbLED[1] = rgbLED[0];
-            rgbLED[0] = temp;
-
-            delay(DIGLED_DELAY);
-////
-        }
         // get the time of the next LED change...
         nextLED = LED_INTERVAL + millis();
     }
+}
+
+void sweepPWM()
+{
+    if(DBGOUT) Serial.println("LEDS: "+String(pwm));
+
+    // yep, adjust the PWM of each of the colors
+    analogWrite(RED_LED, pwm);
+    analogWrite(GRN_LED, pwm);
+    analogWrite(BLU_LED, pwm);
+    // when the PWM is OFF wait for a while
+    if(pwm == 0) delay(PWM_ZERO_DELAY);
+    // increment the PWM value
+    pwm = pwm + PWMSTEP;
+    // did we reach the end of the PWM range?
+    if(pwm > PWMRANGE) 
+    {
+        // yep, set the PWM value to OFF(0) and 
+        // leave the LED turned ON for a while
+        pwm = 0;
+        delay(PWM_MAX_DELAY);
+    }
+}
+
+void colorsPWM()
+{
+    analogWrite(RED_LED, pwmLED[pwmIdx][PWMLED_RED]);
+    analogWrite(GRN_LED, pwmLED[pwmIdx][PWMLED_GRN]);
+    analogWrite(BLU_LED, pwmLED[pwmIdx][PWMLED_BLU]);
+
+    if((pwmLED[pwmIdx][PWMLED_RED] == pwmLED[pwmIdx][PWMLED_GRN])
+       && (pwmLED[pwmIdx][PWMLED_GRN] == pwmLED[pwmIdx][PWMLED_BLU])
+       && (pwmLED[pwmIdx][PWMLED_BLU] == 0))
+    {
+        pwmIdx = 0;
+        delay(PWM_MAX_DELAY);
+    } else  {
+        pwmIdx += 1;
+        delay(PWM_ZERO_DELAY);
+    }
+}
+
+
+void cycleDIG()
+{
+int temp;
+
+    // write the pattern of ON/OFF to the LEDs
+    digitalWrite(RED_LED, rgbLED[0]);
+    digitalWrite(GRN_LED, rgbLED[1]);
+    digitalWrite(BLU_LED, rgbLED[2]);
+    // rotate the pattern through the 3 LEDs
+    temp = rgbLED[2];
+    rgbLED[2] = rgbLED[1];
+    rgbLED[1] = rgbLED[0];
+    rgbLED[0] = temp;
+
+    delay(DIGLED_DELAY);
 }
 
 /*
