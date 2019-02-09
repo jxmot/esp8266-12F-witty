@@ -92,6 +92,8 @@ Starting with different patterns have somewhat different effects.
 
 ## Button & LDR
 
+Pressing the button on the ESP8266 board will be detected and the current input from the LDR will be read. The LDR values can range from about 20 (*when dark*) to 1024 when fully illuminated.
+
 ## The loop
 
 The majority of sketch's logic is executed from within the `loop()` function. In this skectch that isn't an issue only because this sketch is simple and doesn't require any precision timing or fast execution of logic within `loop()`.
@@ -100,7 +102,7 @@ The majority of sketch's logic is executed from within the `loop()` function. In
 
 The green LED on the board I used was much brighter than the red and the blue. A mix of all three LEDs should produce white, but mine did not. Even when diffused. But reproducing specific color mixes wasn't my goal so it was no real issue.
 
-
+The best way to see mixed colors is to place a piece of white paper over the LED. That will diffuse the light and the mixed color should be easier to see.
 
 
 
