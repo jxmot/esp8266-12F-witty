@@ -163,7 +163,9 @@ int buttnow;
             Serial.println("BUTT: LOW " + String(buttnow));
         } else {
             Serial.println("LDR : "+String(LDRvalue));
-            if(ledMethod == USE_PWM) Serial.println("LEDS: "+String(pwm));
+            if(ledMethod == USE_PWM) 
+                if(PWM_TABLE) Serial.println("LEDS: "+String(pwmIdx));
+                else Serial.println("LEDS: "+String(pwm));
             else Serial.println("LEDS: "+String(rgbLED[0])+" "+String(rgbLED[1])+" "+String(rgbLED[2]));
         }
     }
