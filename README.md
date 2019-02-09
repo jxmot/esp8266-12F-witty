@@ -79,12 +79,12 @@ HIGH or 1 = the LED is on
 
 Starting with different patterns have somewhat different effects.
 
-|  Red |  Grn |  Blu |
-|:----:|:----:|:----:|
-| HIGH |  LOW | HIGH |
-|   1  |   0  |   1  | red + blue
-|   1  |   1  |   0  | red + green
-|   0  |   1  |   1  | green + blue
+|  Red |  Grn |  Blu |              |
+|:----:|:----:|:----:|:------------:|
+| HIGH |  LOW | HIGH |              |
+|   1  |   0  |   1  | red + blue   |
+|   1  |   1  |   0  | red + green  |
+|   0  |   1  |   1  | green + blue |
 
 
 |  Red |  Grn |  Blu |
