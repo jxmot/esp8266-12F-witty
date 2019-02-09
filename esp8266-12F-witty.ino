@@ -57,7 +57,7 @@
 
 // for choosing the method for activating the LEDs
 //      default is PWM, USE_DIG is the other choice
-bool ledMethod = USE_PWM;
+bool ledMode = USE_PWM;
 // set time for the next LED access
 //      LED_INTERVAL milliseconds in the future
 int nextLED = LED_INTERVAL + millis();
@@ -112,7 +112,7 @@ void setup()
 
     // reset all 3 colors to OFF, and use digital
     // 
-    resetLED(ledMethod);
+    resetLED(ledMode);
 }
 
 void loop()
@@ -121,7 +121,7 @@ void loop()
 
     readButton();
 
-    if(toggle) runLED(ledMethod);
+    if(toggle) runLED(ledMode);
     else readLDR();
 
     toggle = !toggle;
@@ -163,7 +163,9 @@ int buttnow;
             Serial.println("BUTT: LOW " + String(buttnow));
         } else {
             Serial.println("LDR : "+String(LDRvalue));
-            if(ledMethod == USE_PWM) 
+            // PWM or digital mode?
+            //      PWM table or sweep display?
+            if(ledMode == USE_PWM) 
                 if(PWM_TABLE) Serial.println("LEDS: "+String(pwmIdx));
                 else Serial.println("LEDS: "+String(pwm));
             else Serial.println("LEDS: "+String(rgbLED[0])+" "+String(rgbLED[1])+" "+String(rgbLED[2]));
@@ -261,7 +263,7 @@ int temp;
 */
 void resetLED(bool pwmORdig)
 {
-    ledMethod = pwmORdig;
+    ledMode = pwmORdig;
 
     if(pwmORdig == USE_PWM)
     {
