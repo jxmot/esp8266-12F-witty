@@ -63,7 +63,11 @@ There are some `#define`d values that can be used to change the timing of the LE
 
 ## LED Operations
 
+### PWM
+
 The PWM operation of the LEDs is a graduated change in state from off to full on. This is accomplished by increasing the PWM value over time. 
+
+### Digital
 
 The digital I/O operation is different. It's because there is no control over the brightness of the LEDs. They're either on or off. Instead a 3 bit pattern is *rotated* through the LEDs. For example:
 
@@ -86,9 +90,6 @@ Starting with different patterns have somewhat different effects.
 |   1  |   1  |   0  | red + green  |
 |   0  |   1  |   1  | green + blue |
 
-
-*Note: The green LED on the board I used was much brighter than the red and the blue. A mix of all three LEDs should produce white, but mine did no.*
-
 ## Button & LDR
 
 ## The loop
@@ -96,6 +97,8 @@ Starting with different patterns have somewhat different effects.
 The majority of sketch's logic is executed from within the `loop()` function. In this skectch that isn't an issue only because this sketch is simple and doesn't require any precision timing or fast execution of logic within `loop()`.
 
 ## Other Things to Note
+
+The green LED on the board I used was much brighter than the red and the blue. A mix of all three LEDs should produce white, but mine did not. Even when diffused. But reproducing specific color mixes wasn't my goal so it was no real issue.
 
 
 
