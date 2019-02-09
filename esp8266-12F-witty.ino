@@ -71,9 +71,9 @@ int pwm = 0;
 //      the green led on the board I used was much brighter
 //      than the other two. so most of the time it looked
 //      very green.
-//int rgbLED[3] = {HIGH, LOW, LOW};
+int rgbLED[3] = {HIGH, LOW, LOW};
 //int rgbLED[3] = {HIGH, LOW, HIGH};
-int rgbLED[3] = {HIGH, HIGH, LOW};
+//int rgbLED[3] = {HIGH, HIGH, LOW};
 
 int pwmIdx = 0;
 int pwmLED[11][3] = {
