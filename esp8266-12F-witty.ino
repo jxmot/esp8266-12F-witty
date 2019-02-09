@@ -190,6 +190,8 @@ void runLED(bool pwmORdig)
     // is it time to change the LED?
     if(nextLED < millis())
     {
+        // PWM or digital mode?
+        //      PWM table or sweep display?
         if(pwmORdig == USE_PWM) 
             if(PWM_TABLE) colorsPWM();
             else sweepPWM();
@@ -200,11 +202,15 @@ void runLED(bool pwmORdig)
     }
 }
 
+/* 
+    Sweeps from 0 to PWMRANGE, pauses and then resets
+    to 0 and pauses. Then starts again.
+*/
 void sweepPWM()
 {
     if(DBGOUT) Serial.println("LEDS: "+String(pwm));
 
-    // yep, adjust the PWM of each of the colors
+    // yep, adjust the same PWM for each of the colors
     analogWrite(RED_LED, pwm);
     analogWrite(GRN_LED, pwm);
     analogWrite(BLU_LED, pwm);
@@ -222,6 +228,10 @@ void sweepPWM()
     }
 }
 
+/*
+    Steps circularly though an array of RGB PWM values
+    and sets the LEDs to that color mix
+*/
 void colorsPWM()
 {
     analogWrite(RED_LED, pwmLED[pwmIdx][PWMLED_RED]);
@@ -241,6 +251,10 @@ void colorsPWM()
 }
 
 
+/*
+    Rotates a pattern of ON/OFF to the LEDs via digital
+    I/O.
+*/
 void cycleDIG()
 {
 int temp;
