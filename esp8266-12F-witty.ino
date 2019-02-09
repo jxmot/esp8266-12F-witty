@@ -112,8 +112,7 @@ void setup()
 
     // reset all 3 colors to OFF, and use digital
     // 
-    resetLED(USE_PWM);
-//    resetLED(USE_DIG);
+    resetLED(ledMethod);
 }
 
 void loop()
