@@ -79,20 +79,12 @@ HIGH or 1 = the LED is on
 
 Starting with different patterns have somewhat different effects.
 
-|  Red |  Grn |  Blu |              |
+|  Red |  Grn |  Blu | Color Combos |
 |:----:|:----:|:----:|:------------:|
 | HIGH |  LOW | HIGH |              |
 |   1  |   0  |   1  | red + blue   |
 |   1  |   1  |   0  | red + green  |
 |   0  |   1  |   1  | green + blue |
-
-
-|  Red |  Grn |  Blu |
-|:----:|:----:|:----:|
-| HIGH | HIGH |  LOW |
-|   1  |   1  |   0  | red + green
-|   0  |   1  |   1  | green + blue
-|   1  |   0  |   1  | red + blue
 
 
 *Note: The green LED on the board I used was much brighter than the red and the blue. A mix of all three LEDs should produce white, but mine did no.*
