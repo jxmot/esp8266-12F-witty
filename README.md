@@ -3,6 +3,19 @@ This sketch contains code that demonstrates the use of a Witty(GizWits) ESP8266-
 
 The "Witty" board is similar to many other boards with the exception of containing an LDR, 3-wire RGB LED, and a momentary push button. And like most of the other boards it comes equipped with a daughter board that provides a USB<->serial(CH340G) connection, and a flash and reset button for flashing.
 
+- [History](#history)
+- [Audience Requirements](#audience-requirements)
+- [Sketch Overview](#sketch-overview)
+  * [Miscellaneous Details](#miscellaneous-details)
+  * [LED Operations](#led-operations)
+    + [PWM](#pwm)
+    + [Digital](#digital)
+  * [Button & LDR](#button---ldr)
+  * [The loop](#the-loop)
+  * [Other Things to Note](#other-things-to-note)
+
+<small><i><a href='http://ecotrust-canada.github.io/markdown-toc/'>Table of contents generated with markdown-toc</a></i></small>
+
 # History
 
 I happened to find a couple of the Witty boards for $5 each. And the ESP8266-12F is a variant that I haven't used yet. So why not?
