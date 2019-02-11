@@ -10,7 +10,7 @@
 bool ledMode = USE_PWM;
 // set time for the next LED access
 //      LED_INTERVAL milliseconds in the future
-int nextLED = LED_INTERVAL + millis();
+unsigned long nextLED = LED_INTERVAL + millis();
 //      0 = LED is off
 int pwm = 0;
 //      0 = R,G, or B is OFF
@@ -41,12 +41,14 @@ int pwmLED[11][3] = {
 };
 // set time for the next LDR reading
 //      LDR_INTERVAL milliseconds in the future
-int nextLDR = LDR_INTERVAL + millis();
+unsigned long nextLDR = LDR_INTERVAL + millis();
 int LDRvalue = 0;
 // loop() will toggle between the LED and LDR
 bool toggle = false;
 // The "witty" board will start with the button HIGH
 int lastButton = LOW;
+int currButton;
+
 /**********************************************************
 */
 void setup() 
@@ -99,18 +101,16 @@ void initButton()
 */
 void readButton()
 {
-int buttnow;
-
     // read the current state of the button
-    buttnow = digitalRead(BUTTON);
+    currButton = digitalRead(BUTTON);
     // if the button is pressed and the last 
     // time the button was read it was HIGH then...
-    if((buttnow == LOW) && (lastButton != LOW))
+    if((currButton == LOW) && (lastButton != LOW))
     {
         if(DBGOUT) 
         {
             // announce the change in the button state
-            Serial.println("BUTT: LOW " + String(buttnow));
+            Serial.println("BUTT: LOW " + String(currButton));
         } else {
             Serial.println("LDR : "+String(LDRvalue));
             // PWM or digital mode?
@@ -120,16 +120,18 @@ int buttnow;
                 else Serial.println("LEDS: "+String(pwm));
             else Serial.println("LEDS: "+String(rgbLED[0])+" "+String(rgbLED[1])+" "+String(rgbLED[2]));
         }
+    } else {
+        // if the button is released and the last 
+        // time the button was read it was LOW then...
+        if((currButton == HIGH) && (lastButton != HIGH))
+        {
+            // announce the change in the button state & PWM
+            Serial.println("BUTT: HIGH " + String(currButton));
+        }
     }
-    // if the button is released and the last 
-    // time the button was read it was LOW then...
-    if((buttnow == HIGH) && (lastButton != HIGH))
-    {
-        // announce the change in the button state & PWM
-        Serial.println("BUTT: HIGH " + String(buttnow));
-    }
+
     // save the button state
-    lastButton = buttnow;
+    lastButton = currButton;
 }
 
 /*
