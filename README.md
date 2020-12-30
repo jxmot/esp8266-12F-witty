@@ -117,5 +117,5 @@ The green LED on the board I used was much brighter than the red and the blue. A
 
 The best way to see mixed colors is to place a piece of white paper over the LED. That will diffuse the light and the mixed color should be easier to see.
 
-
-
+---
+<img src="http://webexperiment.info/extcounter/mdcount.php?id=esp8266-12F-witty">
