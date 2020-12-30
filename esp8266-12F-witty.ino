@@ -2,6 +2,9 @@
     esp8266-12F-witty.ino - demo sketch intended to
     run on the "Witty" board (ESP8266-12F, with a 
     3-wire RGB LED, LDR(photocell), and a push button.
+
+    NOTE: Select the "WeMos D1(Retired)" board to build
+    this sketch.
 */
 #include "esp8266-12F-witty.h"
 
@@ -211,15 +214,16 @@ void cycleDIG()
 {
 int temp;
 
-    // write the pattern of ON/OFF to the LEDs
-    digitalWrite(RED_LED, rgbLED[0]);
-    digitalWrite(GRN_LED, rgbLED[1]);
-    digitalWrite(BLU_LED, rgbLED[2]);
     // rotate the pattern through the 3 LEDs
     temp = rgbLED[2];
     rgbLED[2] = rgbLED[1];
     rgbLED[1] = rgbLED[0];
     rgbLED[0] = temp;
+
+    // write the pattern of ON/OFF to the LEDs
+    digitalWrite(RED_LED, rgbLED[0]);
+    digitalWrite(GRN_LED, rgbLED[1]);
+    digitalWrite(BLU_LED, rgbLED[2]);
 
     delay(DIGLED_DELAY);
 }

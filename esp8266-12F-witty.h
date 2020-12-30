@@ -1,14 +1,16 @@
+#pragma once
+
 // methods for activating the LEDs
 #define USE_PWM true
 #define USE_DIG false
 // sub-demos of the LEDs 
-#define PWM_TABLE true
+#define PWM_TABLE false  // ignored when USE_PWM is false
 // pins
-#define BUTTON  4
-#define RED_LED 15
-#define GRN_LED 12
-#define BLU_LED 13
-#define LDR_IN  A0
+#define BUTTON  4   // GPIO4 
+#define RED_LED 15  // GPIO15
+#define GRN_LED 12  // GPIO12
+#define BLU_LED 13  // GPIO13
+#define LDR_IN  A0  // ADC
 // change to 'true' to see more console output
 #define DBGOUT false
 // LED timing
